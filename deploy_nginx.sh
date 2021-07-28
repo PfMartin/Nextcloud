@@ -6,4 +6,4 @@ podman run \
   --volume /srv/Nextcloud/nginx:/etc/nginx/conf.d \
   --restart on-failure \
   --pod nextcloud-pod \
-  nginx
+  docker.io/library/nginx
