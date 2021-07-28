@@ -1,8 +1,8 @@
 #!/bin/bash
 
-mkdir /srv/Nextcloud/nextcloud-app
-mkdir /srv/Nextcloud/nextcloud-data
-mkdir /srv/Nextcloud/nextcloud-db
+mkdir -p /srv/Nextcloud/nextcloud-app
+mkdir -p /srv/Nextcloud/nextcloud-data
+mkdir -p /srv/Nextcloud/nextcloud-db
 
 
 podman pod ps | grep nextcloud-pod
