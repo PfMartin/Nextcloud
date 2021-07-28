@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# File for all environment variables
-. "/srv/Nextcloud/Variables.env"
-
 podman run \
   --name nextcloud-db \
   --detach \
