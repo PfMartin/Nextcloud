@@ -11,5 +11,5 @@ podman run \
   --volume /srv/Nextcloud/nextcloud-app:/var/www/html \
   --volume /srv/Nextcloud/nextcloud-data:/var/www/html/data \
   --restart on-failure \
-  --pod nextcloud-pod
+  --pod nextcloud-pod \
   docker.io/library/nextcloud:21
