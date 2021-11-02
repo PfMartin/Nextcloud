@@ -1,6 +1,8 @@
 #!/bin/bash
 
-. "/srv/Variables.env"
+directoryroot=/home/server/Container-Volumes/Nextcloud
+
+. ${directoryroot}/Variables.env
 
 podman run \
   --name nextcloud \
@@ -10,8 +12,8 @@ podman run \
   --env MYSQL_password=$DATABASE_PASSWORD \
   --env NEXTCLOUD_ADMIN_USER=$NEXTCLOUD_ADMIN \
   --env NEXTCLOUD_ADMIN_PASSWORD=$NEXTCLOUD_PASSWORD \
-  --volume /srv/Nextcloud/nextcloud-app:/var/www/html \
-  --volume /srv/Nextcloud/nextcloud-data:/var/www/html/data \
+  --volume ${directoryroot}/nextcloud-app:/var/www/html \
+  --volume ${directoryroot}/nextcloud-data:/var/www/html/data \
   --restart on-failure \
   --pod nextcloud-pod \
   docker.io/library/nextcloud:21
