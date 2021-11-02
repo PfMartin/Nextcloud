@@ -1,6 +1,8 @@
 #!/bin/bash
 
-. "/srv/Variables.env"
+directoryroot=/home/server/Container-Volumes/Nextcloud
+
+. ${directoryroot}/Variables.env
 
 podman run \
   --name nextcloud-db \
@@ -8,7 +10,7 @@ podman run \
   --env MYSQL_DATABASE=$DATABASE_NAME \
   --env MYSQL_PASSWORD=$DATABASE_PASSWORD \
   --env MYSQL_ROOT_PASSWORD=$DATABASE_PASSWORD_ROOT \
-  --volume /srv/Nextcloud/nextcloud-db:/var/lib/mysql \
+  --volume ${directoryroot}/nextcloud-db:/var/lib/mysql \
   --pod nextcloud-pod \
   --restart on-failure \
   docker.io/library/mariadb:10

@@ -1,7 +1,10 @@
 #!/bin/bash
 
 podport="8080"
-directoryroot="/srv/Nextcloud"
+
+echo -e "What's the root directory of the container"
+
+read directoryroot
 
 mkdir -p ${directoryroot}/nextcloud-app
 mkdir -p ${directoryroot}/nextcloud-data
