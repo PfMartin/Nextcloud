@@ -8,8 +8,8 @@ services:
     ports:
       - 8080:80
     environment:
-      - PUID=1000
-      - GUID=1000
+      PUID: 1000
+      GUID: 1000
     volumes:
       - ./nextcloud/apps:/var/www/html/apps
       - ./nextcloud/config:/var/www/html/config
@@ -22,11 +22,13 @@ services:
     image: mariadb:10.8.3
     command: --innodb-read-only-compressed=OFF
     environment:
-      - PUID=1000
-      - GUID=1000
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=ncdb
-      - MYSQL_USER=nextcloud
-      - MYSQL_PASSWORD=nextcloud
+      PUID: 1000
+      GUID: 1000
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    env_file:
+      - .env
     volumes:
-      - ./mariadb:/var/lib/mysql
+      - ./nextcloud/db:/var/lib/mysql
