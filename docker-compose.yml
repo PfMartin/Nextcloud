@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  nextcloud:
+    container_name: nextcloud
+    restart: unless-stopped
+    image: nextcloud:22.2.10
+    ports:
+      - 8080:80
+    environment:
+      - PUID=1000
+      - GUID=1000
+    volumes:
+      - ./nextcloud/apps:/var/www/html/apps
+      - ./nextcloud/config:/var/www/html/config
+      - ./nextcloud/data:/var/www/html/data
+    depends_on:
+      - db
+  db:
+    container_name: maria-db
+    restart: unless-stopped
+    image: mariadb:10.8.3
+    command: --innodb-read-only-compressed=OFF
+    environment:
+      - PUID=1000
+      - GUID=1000
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=ncdb
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=nextcloud
+    volumes:
+      - ./mariadb:/var/lib/mysql
